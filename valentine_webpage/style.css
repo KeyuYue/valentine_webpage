@@ -269,6 +269,8 @@ html {
             #333 65%,
             #333 100%);
     background-size: 200% 100%;
+    color: #333;
+    /* Fallback for browsers that don't support text-fill-color/background-clip */
     -webkit-background-clip: text;
     background-clip: text;
     -webkit-text-fill-color: transparent;
@@ -285,6 +287,8 @@ html {
 
 /* 亮色歌词（用于深色背景） */
 .lyric-light {
+    color: #fff !important;
+    /* Fallback */
     background: linear-gradient(90deg,
             #fff 0%,
             #fff 35%,
@@ -296,6 +300,7 @@ html {
     background-size: 200% 100% !important;
     -webkit-background-clip: text !important;
     background-clip: text !important;
+    -webkit-text-fill-color: transparent !important;
 }
 
 /* 桌面端：左右分布 */

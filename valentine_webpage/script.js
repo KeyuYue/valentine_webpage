@@ -475,15 +475,19 @@ startBtn.addEventListener('click', () => {
 
 // 根据设备更新提示文本
 function updateHintText() {
-    const hintEl = document.getElementById('interaction-hint');
-    if (!hintEl) return;
-
+    const hintIds = ['interaction-hint', 'interaction-hint-3', 'interaction-hint-j', 'interaction-hint-4'];
     const isMobile = /Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
-    if (isMobile) {
-        hintEl.innerHTML = '📱 Tilt your phone left & right<br>to rotate the hearts';
-    } else {
-        hintEl.innerHTML = '🖱️ Click & drag left/right<br>to rotate the hearts';
-    }
+
+    hintIds.forEach(id => {
+        const hintEl = document.getElementById(id);
+        if (!hintEl) return;
+
+        if (isMobile) {
+            hintEl.innerHTML = '📱 稍稍倾斜手机<br>更好食用哟 ❤️';
+        } else {
+            hintEl.innerHTML = '🖱️ 移动鼠标或点击拖拽<br>更好食用哟 ❤️';
+        }
+    });
 }
 
 // 音乐控制
