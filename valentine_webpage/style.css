@@ -1,0 +1,250 @@
+/* ============================================
+   Valentine's Day Webpage — Styles
+   ============================================ */
+
+/* --- 全局样式 --- */
+body,
+html {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+    height: 100dvh;
+    /* 动态视口高度，修复移动端地址栏问题 */
+    overflow: hidden;
+    background-color: #ffe6fa;
+    font-family: 'Montserrat', sans-serif;
+    touch-action: manipulation;
+    /* 禁用双击缩放 */
+    -webkit-tap-highlight-color: transparent;
+    /* 去除安卓点击高亮 */
+    -webkit-text-size-adjust: 100%;
+    /* 防止竖屏文字自动放大 */
+}
+
+/* 背景层：浅粉色渐变 */
+.bg-layer {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(to top, #fad0c4 0%, #ffd1ff 100%);
+    z-index: 0;
+}
+
+/* Canvas */
+#heart-canvas {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    pointer-events: none;
+}
+
+/* --- 字体与文字特效 --- */
+.font-cursive {
+    font-family: 'Great Vibes', cursive;
+}
+
+.text-rose-gold {
+    background: linear-gradient(to bottom, #d68e3a, #c75b5b, #d68e3a);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    color: transparent;
+    text-shadow: 0px 0px 20px rgba(255, 255, 255, 0.8), 2px 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* --- 动画 --- */
+@keyframes float {
+
+    0%,
+    100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-15px);
+    }
+}
+
+.animate-float {
+    animation: float 4s ease-in-out infinite;
+}
+
+@keyframes pulse-slow {
+
+    0%,
+    100% {
+        opacity: 1;
+        transform: scale(1);
+    }
+
+    50% {
+        opacity: 0.8;
+        transform: scale(0.98);
+    }
+}
+
+.animate-pulse-slow {
+    animation: pulse-slow 3s infinite;
+}
+
+@keyframes breathe-border {
+    0% {
+        box-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
+    }
+
+    50% {
+        box-shadow: 0 0 25px rgba(255, 255, 255, 0.8);
+    }
+
+    100% {
+        box-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
+    }
+}
+
+/* --- 按钮 --- */
+.start-btn {
+    font-family: 'Great Vibes', cursive;
+    font-size: 2.5rem;
+    color: #b06ab3;
+    transition: all 0.4s ease;
+    cursor: pointer;
+    padding: 10px 40px;
+    border-radius: 50px;
+    border: 2px solid transparent;
+    text-shadow: 1px 1px 2px rgba(255, 255, 255, 0.8);
+    position: relative;
+    z-index: 10;
+    background: none;
+}
+
+.start-btn:hover {
+    animation: none;
+    border-color: #fff;
+    background-color: rgba(255, 255, 255, 0.4);
+    box-shadow: 0 0 15px rgba(255, 255, 255, 0.6);
+    color: #d63384;
+    transform: scale(1.05);
+}
+
+/* --- 界面切换 --- */
+.hidden-screen {
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 1s ease;
+    position: absolute;
+}
+
+.visible-screen {
+    opacity: 1;
+    pointer-events: auto;
+    transition: opacity 1s ease;
+    position: absolute;
+}
+
+/* --- 音乐播放器 (Card Shape) --- */
+.music-player-card {
+    width: 320px;
+    padding: 20px;
+    background: rgba(255, 255, 255, 0.25);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border-radius: 20px;
+    border: 1px solid rgba(255, 255, 255, 0.4);
+    animation: breathe-border 4s infinite ease-in-out;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    z-index: 20;
+}
+
+.album-cover {
+    width: 200px;
+    height: 200px;
+    border-radius: 10px;
+    background-color: rgba(255, 255, 255, 0.3);
+    background-size: cover;
+    background-position: center;
+    margin-bottom: 20px;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s;
+}
+
+.album-cover:hover {
+    transform: scale(1.02);
+}
+
+.control-btn {
+    font-size: 2rem;
+    color: #fff;
+    cursor: pointer;
+    transition: color 0.3s;
+    background: none;
+    border: none;
+    text-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+.control-btn:hover {
+    color: #ffe6fa;
+}
+
+/* --- 交互提示 --- */
+.interaction-hint {
+    margin-top: 2rem;
+    color: rgba(255, 255, 255, 0.6);
+    font-size: 0.875rem;
+    text-align: center;
+    font-family: sans-serif;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+}
+
+/* --- 移动端适配 --- */
+@media screen and (max-width: 400px) {
+    .music-player-card {
+        width: 260px;
+        padding: 15px;
+    }
+
+    .album-cover {
+        width: 160px;
+        height: 160px;
+        margin-bottom: 12px;
+    }
+
+    .start-btn {
+        font-size: 1.8rem;
+        padding: 8px 28px;
+    }
+
+    .interaction-hint {
+        font-size: 0.75rem;
+        margin-top: 1rem;
+    }
+}
+
+@media screen and (max-height: 600px) {
+    .album-cover {
+        width: 130px;
+        height: 130px;
+        margin-bottom: 8px;
+    }
+
+    .music-player-card {
+        padding: 12px;
+    }
+
+    .interaction-hint {
+        margin-top: 0.5rem;
+    }
+}

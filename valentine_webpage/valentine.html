@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Happy Valentine's Day</title>
+    <!-- 字体 -->
+    <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Montserrat:wght@300;400&display=swap"
+        rel="stylesheet">
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- 自定义样式 -->
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <div class="bg-layer"></div>
+    <canvas id="heart-canvas"></canvas>
+
+    <!-- 界面 1: 主页 -->
+    <div id="landing-page" class="absolute inset-0 flex flex-col justify-center items-center visible-screen"
+        style="z-index: 5;">
+        <h1 class="font-cursive text-6xl md:text-9xl text-center p-4 animate-float text-rose-gold select-none">
+            Happy<br>Valentine's Day!
+        </h1>
+        <div class="w-24 h-1 bg-white rounded-full my-6 opacity-80 shadow-lg relative z-10"></div>
+        <div class="mt-8">
+            <button id="start-btn" class="start-btn animate-pulse-slow">
+                ~ click to start ~
+            </button>
+        </div>
+    </div>
+
+    <!-- 界面 2: 互动音乐播放器界面 -->
+    <div id="next-screen" class="absolute inset-0 flex flex-col justify-center items-center hidden-screen">
+
+        <!-- 音乐播放器卡片 -->
+        <div class="music-player-card">
+            <!-- 专辑封面 -->
+            <div class="album-cover">
+                <img id="album-img" src="khalil.jpg" class="w-full h-full object-cover" alt="Album Cover">
+            </div>
+
+            <div class="text-black text-center mb-4">
+                <h3 class="text-xl font-bold font-cursive tracking-wider">Wonderful Tonight</h3>
+                <p class="text-sm opacity-80 mt-1 font-cursive">Happy Valentine's Day ❤️</p>
+            </div>
+
+            <!-- 控制按钮 -->
+            <div class="flex items-center gap-6">
+                <button id="play-pause-btn" class="control-btn">▶</button>
+            </div>
+        </div>
+
+        <!-- 交互提示 -->
+        <div id="interaction-hint" class="interaction-hint">
+            Tilt your phone or drag to rotate ❤️
+        </div>
+
+        <!-- 导航按钮 -->
+        <div class="flex gap-4 mt-6" style="z-index: 25;">
+            <button id="back-btn-2" class="start-btn" style="font-size: 1.5rem;">← back</button>
+            <button id="next-song-btn" class="start-btn animate-pulse-slow" style="font-size: 1.5rem;">next →</button>
+        </div>
+    </div>
+
+    <!-- 界面 3: 第二首歌 -->
+    <div id="screen-3" class="absolute inset-0 flex flex-col justify-center items-center hidden-screen">
+
+        <!-- 音乐播放器卡片 -->
+        <div class="music-player-card">
+            <!-- 专辑封面 -->
+            <div class="album-cover">
+                <img src="david.jpg" class="w-full h-full object-cover" alt="Album Cover">
+            </div>
+
+            <div class="text-white text-center mb-4">
+                <h3 class="text-xl font-bold font-cursive tracking-wider">沙滩</h3>
+                <p class="text-sm opacity-80 mt-1 font-cursive">Happy Valentine's Day ❤️</p>
+            </div>
+
+            <!-- 控制按钮 -->
+            <div class="flex items-center gap-6">
+                <button id="play-pause-btn-3" class="control-btn">▶</button>
+            </div>
+        </div>
+
+        <!-- 交互提示 -->
+        <div id="interaction-hint-3" class="interaction-hint">
+            Tilt your phone or drag to rotate ❤️
+        </div>
+
+        <!-- 导航按钮 -->
+        <div class="flex gap-4 mt-6" style="z-index: 25;">
+            <button id="back-btn-3" class="start-btn" style="font-size: 1.5rem;">← back</button>
+            <button id="next-song-btn-3" class="start-btn animate-pulse-slow" style="font-size: 1.5rem;">next →</button>
+        </div>
+    </div>
+
+    <!-- 界面 J: Love Yourself -->
+    <div id="screen-justin" class="absolute inset-0 flex flex-col justify-center items-center hidden-screen">
+
+        <!-- 音乐播放器卡片 -->
+        <div class="music-player-card">
+            <!-- 专辑封面 -->
+            <div class="album-cover">
+                <img src="justin.jpg" class="w-full h-full object-cover" alt="Album Cover">
+            </div>
+
+            <div class="text-white text-center mb-4">
+                <h3 class="text-xl font-bold font-cursive tracking-wider">Love Yourself</h3>
+                <p class="text-sm opacity-80 mt-1 font-cursive">Happy Valentine's Day ❤️</p>
+            </div>
+
+            <!-- 控制按钮 -->
+            <div class="flex items-center gap-6">
+                <button id="play-pause-btn-j" class="control-btn">▶</button>
+            </div>
+        </div>
+
+        <!-- 交互提示 -->
+        <div id="interaction-hint-j" class="interaction-hint">
+            Tilt your phone or drag to rotate ❤️
+        </div>
+
+        <!-- 导航按钮 -->
+        <div class="flex gap-4 mt-6" style="z-index: 25;">
+            <button id="back-btn-j" class="start-btn" style="font-size: 1.5rem;">← back</button>
+            <button id="next-song-btn-j" class="start-btn animate-pulse-slow" style="font-size: 1.5rem;">next →</button>
+        </div>
+    </div>
+
+    <!-- 界面 4: 不要害怕 -->
+    <div id="screen-4" class="absolute inset-0 flex flex-col justify-center items-center hidden-screen">
+
+        <!-- 音乐播放器卡片 -->
+        <div class="music-player-card">
+            <!-- 专辑封面 -->
+            <div class="album-cover">
+                <img src="wang.jpg" class="w-full h-full object-cover" alt="Album Cover">
+            </div>
+
+            <div class="text-black text-center mb-4">
+                <h3 class="text-xl font-bold font-cursive tracking-wider">不要害怕</h3>
+                <p class="text-sm opacity-80 mt-1 font-cursive">Happy Valentine's Day ❤️</p>
+            </div>
+
+            <!-- 控制按钮 -->
+            <div class="flex items-center gap-6">
+                <button id="play-pause-btn-4" class="control-btn">▶</button>
+            </div>
+        </div>
+
+        <!-- 交互提示 -->
+        <div id="interaction-hint-4" class="interaction-hint">
+            Tilt your phone or drag to rotate ❤️
+        </div>
+
+        <!-- 导航按钮 -->
+        <div class="flex gap-4 mt-6" style="z-index: 25;">
+            <button id="back-btn-4" class="start-btn" style="font-size: 1.5rem;">← back</button>
+        </div>
+    </div>
+
+    <!-- 音频元素 -->
+    <audio id="bg-music" loop>
+        <source src="khalil.mp3" type="audio/mpeg">
+    </audio>
+    <audio id="bg-music-3" loop>
+        <source src="david.mp3" type="audio/mpeg">
+    </audio>
+    <audio id="bg-music-4" loop>
+        <source src="wang.mp3" type="audio/mpeg">
+    </audio>
+    <audio id="bg-music-j" loop>
+        <source src="justin.mp3" type="audio/mpeg">
+    </audio>
+
+    <!-- 脚本 -->
+    <script src="script.js"></script>
+</body>
+
+</html>
