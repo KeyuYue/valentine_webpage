@@ -46,7 +46,7 @@ html {
 
 /* --- 字体与文字特效 --- */
 .font-cursive {
-    font-family: 'Great Vibes', cursive;
+    font-family: 'Zhi Mang Xing', 'Great Vibes', cursive;
 }
 
 .text-rose-gold {
@@ -207,6 +207,131 @@ html {
     font-family: sans-serif;
     letter-spacing: 0.1em;
     text-transform: uppercase;
+}
+
+/* --- 装饰歌词文字 --- */
+@keyframes lyricFloatIn {
+    0% {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+
+    100% {
+        opacity: 0.55;
+        transform: translateY(0);
+    }
+}
+
+@keyframes glowBreath {
+
+    0%,
+    100% {
+        text-shadow: 0 1px 8px rgba(255, 255, 255, 0.3), 0 0 20px rgba(255, 180, 200, 0.0);
+    }
+
+    50% {
+        text-shadow: 0 1px 12px rgba(255, 255, 255, 0.6), 0 0 30px rgba(255, 180, 200, 0.35);
+    }
+}
+
+@keyframes gentleFloat {
+
+    0%,
+    100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-8px);
+    }
+}
+
+@keyframes meteorStreak {
+    0% {
+        background-position: -200% center;
+    }
+
+    100% {
+        background-position: 200% center;
+    }
+}
+
+.lyric-decor {
+    position: absolute;
+    font-family: 'Zhi Mang Xing', 'Great Vibes', cursive;
+    /* 流星穿梭：渐变背景裁剪到文字 */
+    background: linear-gradient(90deg,
+            #333 0%,
+            #333 35%,
+            rgba(255, 255, 255, 0.95) 48%,
+            rgba(255, 220, 240, 0.9) 50%,
+            rgba(255, 255, 255, 0.95) 52%,
+            #333 65%,
+            #333 100%);
+    background-size: 200% 100%;
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    opacity: 0;
+    pointer-events: none;
+    z-index: 15;
+    animation:
+        lyricFloatIn 2s ease-out forwards,
+        glowBreath 3s ease-in-out 2.5s infinite,
+        gentleFloat 4s ease-in-out 2.5s infinite,
+        meteorStreak 5s linear 3s infinite;
+    white-space: nowrap;
+}
+
+/* 亮色歌词（用于深色背景） */
+.lyric-light {
+    background: linear-gradient(90deg,
+            #fff 0%,
+            #fff 35%,
+            rgba(255, 255, 255, 0.95) 48%,
+            rgba(255, 220, 240, 1) 50%,
+            rgba(255, 255, 255, 0.95) 52%,
+            #fff 65%,
+            #fff 100%) !important;
+    background-size: 200% 100% !important;
+    -webkit-background-clip: text !important;
+    background-clip: text !important;
+}
+
+/* 桌面端：左右分布 */
+.lyric-line1 {
+    font-size: 2.8rem;
+    left: 6%;
+    top: 38%;
+    animation-delay: 0.5s;
+}
+
+.lyric-line2 {
+    font-size: 2.2rem;
+    right: 5%;
+    bottom: 32%;
+    animation-delay: 1.2s;
+}
+
+/* 手机端：都在卡片上方，居中堆叠 */
+@media screen and (max-width: 768px) {
+    .lyric-line1 {
+        position: relative;
+        left: auto;
+        top: auto;
+        font-size: 1.8rem;
+        text-align: center;
+        margin-bottom: 0.2rem;
+    }
+
+    .lyric-line2 {
+        position: relative;
+        right: auto;
+        bottom: auto;
+        font-size: 1.3rem;
+        text-align: center;
+        margin-bottom: 1rem;
+    }
 }
 
 /* --- 移动端适配 --- */

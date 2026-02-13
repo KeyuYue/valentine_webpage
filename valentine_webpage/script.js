@@ -22,6 +22,11 @@ let lastPointerTime = 0;
 // 陀螺仪
 let gyroAvailable = false;
 let gyroGamma = 0; // 左右倾斜角
+let gyroBeta = 45;  // 前后倾斜角
+
+// 歌词视差偏移
+let lyricOffsetX = 0;
+let lyricOffsetY = 0;
 
 // 触摸滑动（第二页备选交互）
 let touchStartX = 0;
@@ -301,6 +306,25 @@ function animate() {
         }
         currentRotationSpeed += (targetRotationSpeed - currentRotationSpeed) * 0.1;
         rotationY += currentRotationSpeed;
+
+        // 歌词视差微移
+        let lx = 0, ly = 0;
+        if (gyroAvailable) {
+            lx = (gyroGamma / 90) * 12;  // ±12px
+            ly = (gyroBeta !== undefined ? (gyroBeta - 45) / 90 : 0) * 8;
+        } else {
+            lx = ((pointer.x / width) - 0.5) * 20;   // ±10px
+            ly = ((pointer.y / height) - 0.5) * 14;   // ±7px
+        }
+        lyricOffsetX += (lx - lyricOffsetX) * 0.06;
+        lyricOffsetY += (ly - lyricOffsetY) * 0.06;
+
+        document.querySelectorAll('.lyric-line1').forEach(el => {
+            el.style.translate = `${lyricOffsetX}px ${lyricOffsetY}px`;
+        });
+        document.querySelectorAll('.lyric-line2').forEach(el => {
+            el.style.translate = `${-lyricOffsetX * 0.7}px ${-lyricOffsetY * 0.7}px`;
+        });
     }
 
     // 3. 绘制心形粒子
@@ -402,6 +426,7 @@ function handleOrientation(event) {
     if (event.gamma !== null) {
         gyroAvailable = true;
         gyroGamma = event.gamma; // -90 ~ 90 左右倾斜
+        gyroBeta = event.beta;   // -180 ~ 180 前后倾斜
     }
 }
 
